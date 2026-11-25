@@ -5,29 +5,32 @@ import products from "./data/product.json";
 export default function App() {
   const [selectedProducts, setSelectedProducts] = useState([
     {
-      image: {
-        thumbnail: "images/waffle-thumbnail.jpg",
-        mobile: "images/waffle-mobile.jpg",
-        tablet: "images/waffle-tablet.jpg",
-        desktop: "images/waffle-desktop.jpg",
-      },
+      imageTumbnail: "images/waffle-thumbnail.jpg",
       name: "Waffle with Berries",
       category: "Waffle",
       price: 6.5,
+      quantity: 1,
     },
   ]);
+
+  const duplicates = selectedProducts.filter(
+    (product, index) =>
+      products.findIndex((p) => p.name === product.name) !== index,
+  );
+
   return (
     <main>
       <div className="products-list">
         <h1 className="title">Desserts</h1>
         <div className="carts-section">
-          {products.map((product, index) => (
+          {products.map((product) => (
             <Product
               key={product.name}
               name={product.name}
               category={product.category}
               img={product.image}
               price={product.price}
+              setSelectedProducts={setSelectedProducts}
             />
           ))}
         </div>
@@ -43,15 +46,24 @@ export default function App() {
               <div>
                 <p className="order-title">{selected.category}</p>
                 <div className="details">
-                  <p className="numbers">1x</p>
+                  <p className="numbers">{selected.quantity}x</p>
                   <p className="order-price">@ ${selected.price}</p>
-                  <p className="order-total">$20.00</p>
+                  <p className="order-total">
+                    ${(selected.quantity * selected.price).toFixed(2)}
+                  </p>
                 </div>
               </div>
               <img
                 className="remove"
                 src="images/icon-remove-item.svg"
                 alt="Remove"
+                onClick={() => {
+                  setSelectedProducts((products) =>
+                    products.filter(
+                      (current) => selected.name !== current.name,
+                    ),
+                  );
+                }}
               />
             </div>
           ))}
