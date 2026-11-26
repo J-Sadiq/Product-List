@@ -6,6 +6,7 @@ export default function App() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [confirmed, setConfirmed] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const prices = selectedProducts.map(
@@ -27,6 +28,8 @@ export default function App() {
               img={product.image}
               price={product.price}
               setSelectedProducts={setSelectedProducts}
+              quantity={quantity}
+              setQuantity={setQuantity}
             />
           ))}
         </div>
@@ -54,6 +57,7 @@ export default function App() {
                 src="images/icon-remove-item.svg"
                 alt="Remove"
                 onClick={() => {
+                  setQuantity(0);
                   setSelectedProducts((products) =>
                     products.filter(
                       (current) => selected.name !== current.name,

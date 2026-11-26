@@ -93,6 +93,14 @@ main {
   bottom: 7.2rem;
   text-align: center;
   left: 18%;
+  transition: all ease 0.2s;
+}
+
+.add-btn:hover {
+  border: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.first-add {
   cursor: pointer;
 }
 
@@ -104,6 +112,36 @@ main {
   font-size: 1.4rem;
 }
 
+.added-btn {
+  display: flex;
+  justify-content: space-between;
+  left: 20%;
+  gap: 1rem;
+  font-size: 1.4rem;
+  background-color: var(--Red);
+  color: white;
+  width: 60%;
+}
+
+.added-btn span {
+  border-radius: 25px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.5rem;
+  width: 1.5rem;
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+
+.added-btn span:active {
+  border: 2px solid black;
+}
+
+.added-btn span img {
+  width: 0.7rem;
+}
 /* Order List */
 
 .order-box {
@@ -162,6 +200,11 @@ main {
   cursor: pointer;
   width: 1.5rem;
   cursor: pointer;
+  transition: all ease 0.3s;
+}
+
+.remove:hover {
+  background-color: var(--Red);
 }
 
 .total {
