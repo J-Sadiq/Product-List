@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function Product({
   name,
   category,
@@ -38,7 +36,7 @@ export default function Product({
             return [
               ...currentProducts,
               {
-                imageTumbnail: img.tumbnail,
+                imageTumbnail: img.thumbnail,
                 name: name,
                 category: category,
                 price: price,

@@ -1,22 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Product from "./components/Product";
 import products from "./data/product.json";
 
 export default function App() {
-  const [selectedProducts, setSelectedProducts] = useState([
-    {
-      imageTumbnail: "images/waffle-thumbnail.jpg",
-      name: "Waffle with Berries",
-      category: "Waffle",
-      price: 6.5,
-      quantity: 1,
-    },
-  ]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [confirmed, setConfirmed] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const duplicates = selectedProducts.filter(
-    (product, index) =>
-      products.findIndex((p) => p.name === product.name) !== index,
-  );
+  useEffect(() => {
+    const prices = selectedProducts.map(
+      (product) => product.quantity * product.price,
+    );
+    setTotalPrice(prices.reduce((price, nextPrice) => price + nextPrice, 0));
+  }, [selectedProducts]);
 
   return (
     <main>
@@ -69,7 +65,7 @@ export default function App() {
           ))}
           <div className="total">
             <p className="order-total">Order Total</p>
-            <p className="total-price">$40.00</p>
+            <p className="total-price">${totalPrice.toFixed(2)}</p>
           </div>
           <div className="info">
             <img src="images/icon-carbon-neutral.svg" alt="Tree" />
@@ -77,7 +73,15 @@ export default function App() {
               This is a <b>carbon-neutral</b> delivery
             </p>
           </div>
-          <button className="order-btn">Confirm Order</button>
+          <button
+            className="order-btn"
+            onClick={() => {
+              setConfirmed(true);
+              console.log(selectedProducts);
+            }}
+          >
+            Confirm Order
+          </button>
         </div>
       ) : (
         <div className="no-order order-box">
@@ -91,6 +95,62 @@ export default function App() {
             <p className="empty">Your added items will appear here</p>
           </div>
         </div>
+      )}
+
+      {confirmed && (
+        <>
+          <div className="order-confirm">
+            <img
+              className="confirm-icon"
+              src="images/icon-order-confirmed.svg"
+              alt="confirmed"
+            />
+            <div>
+              <h2 className="confirm-title">Order Confirmed</h2>
+              <p className="confirm-des">We hope you enjoy your food!</p>
+            </div>
+            <ul className="product-list">
+              {selectedProducts.map((product) => (
+                <li className="product-item">
+                  <div className="itme-p-left">
+                    <img
+                      className="item-img"
+                      src={product.imageTumbnail}
+                      alt={product.category}
+                    />
+                    <div>
+                      <p className="item-name">{product.category}</p>
+                      <div className="item-des">
+                        <p className="quantity">{product.quantity}x</p>
+                        <p className="item-price">
+                          @ ${product.price.toFixed(2)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="total-item-price">
+                    ${(product.quantity * product.price).toFixed(2)}
+                  </p>
+                </li>
+              ))}
+              <li className="product-item order-item">
+                <p className="order-item-title">Order Total</p>
+                <p className="total-order-price">${totalPrice.toFixed(2)}</p>
+              </li>
+            </ul>
+            <button
+              className="order-btn"
+              onClick={() => {
+                setSelectedProducts([]);
+                setConfirmed(false);
+              }}
+            >
+              Start New Order
+            </button>
+          </div>
+
+          <div className="overlay"></div>
+        </>
       )}
     </main>
   );
