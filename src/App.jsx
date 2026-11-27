@@ -62,7 +62,7 @@ export default function App() {
 
               <img
                 className="remove"
-                src="/images/icon-remove-item.svg"
+                src="images/icon-remove-item.svg"
                 alt="Remove"
                 onClick={() => {
                   setSelectedProducts((currentProducts) =>
@@ -81,7 +81,7 @@ export default function App() {
           </div>
 
           <div className="info">
-            <img src="/images/icon-carbon-neutral.svg" alt="Tree" />
+            <img src="images/icon-carbon-neutral.svg" alt="Tree" />
 
             <p className="carbon">
               This is a <b>carbon-neutral</b> delivery
@@ -99,7 +99,7 @@ export default function App() {
           <div className="empty-box">
             <img
               className="img-empty"
-              src="/images/empty-cart.svg"
+              src="images/empty-cart.svg"
               alt="Empty"
             />
 
@@ -114,7 +114,7 @@ export default function App() {
           <div className="order-confirm">
             <img
               className="confirm-icon"
-              src="/images/icon-order-confirmed.svg"
+              src="images/icon-order-confirmed.svg"
               alt="Confirmed"
             />
 

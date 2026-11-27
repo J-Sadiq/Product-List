@@ -53,16 +53,13 @@ export default function Product({
       {isAdded && quantity !== 0 ? (
         <button className="add-btn added-btn">
           <span onClick={decrement}>
-            <img
-              src={`${import.meta.env.BASE_URL}/images/icon-decrement-quantity.svg`}
-              alt="decrement"
-            />
+            <img src={`images/icon-decrement-quantity.svg`} alt="decrement" />
           </span>
 
           {quantity}
 
           <span onClick={increment}>
-            <img src="/images/icon-increment-quantity.svg" alt="increment" />
+            <img src="images/icon-increment-quantity.svg" alt="increment" />
           </span>
         </button>
       ) : (
@@ -83,7 +80,7 @@ export default function Product({
             setIsadded(true);
           }}
         >
-          <img src="/images/icon-add-to-cart.svg" alt="" />
+          <img src="images/icon-add-to-cart.svg" alt="" />
           <span>Add to Cart</span>
         </button>
       )}
