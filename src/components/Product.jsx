@@ -53,7 +53,10 @@ export default function Product({
       {isAdded && quantity !== 0 ? (
         <button className="add-btn added-btn">
           <span onClick={decrement}>
-            <img src="/images/icon-decrement-quantity.svg" alt="decrement" />
+            <img
+              src={`${import.meta.env.BASE_URL}/images/icon-decrement-quantity.svg`}
+              alt="decrement"
+            />
           </span>
 
           {quantity}
