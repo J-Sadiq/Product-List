@@ -40,50 +40,51 @@ export default function Product({
 
   return (
     <div className="cart">
-      <picture className="product-img">
-        <source media="(max-width: 500px)" srcSet={img.mobile} />
-        <source media="(max-width: 800px)" srcSet={img.tablet} />
-        <img className="product-img" src={img.desktop} alt={name} />
-      </picture>
+      <div className="pic-add-btn">
+        <picture className="product-img">
+          <source media="(max-width: 500px)" srcSet={img.mobile} />
+          <source media="(max-width: 800px)" srcSet={img.tablet} />
+          <img className="product-img" src={img.desktop} alt={name} />
+        </picture>
+        {isAdded && quantity !== 0 ? (
+          <button className="add-btn added-btn">
+            <span onClick={decrement}>
+              <img src={`images/icon-decrement-quantity.svg`} alt="decrement" />
+            </span>
+
+            {quantity}
+
+            <span onClick={increment}>
+              <img src="images/icon-increment-quantity.svg" alt="increment" />
+            </span>
+          </button>
+        ) : (
+          <button
+            className="add-btn first-add"
+            onClick={() => {
+              setSelectedProducts((currentProducts) => [
+                ...currentProducts,
+                {
+                  imageTumbnail: img.thumbnail,
+                  name,
+                  category,
+                  price,
+                  quantity: 1,
+                },
+              ]);
+
+              setIsadded(true);
+            }}
+          >
+            <img src="images/icon-add-to-cart.svg" alt="" />
+            <span>Add to Cart</span>
+          </button>
+        )}
+      </div>
 
       <h3 className="product-title">{category}</h3>
       <p className="product-des">{name}</p>
       <p className="product-price">${price.toFixed(2)}</p>
-
-      {isAdded && quantity !== 0 ? (
-        <button className="add-btn added-btn">
-          <span onClick={decrement}>
-            <img src={`images/icon-decrement-quantity.svg`} alt="decrement" />
-          </span>
-
-          {quantity}
-
-          <span onClick={increment}>
-            <img src="images/icon-increment-quantity.svg" alt="increment" />
-          </span>
-        </button>
-      ) : (
-        <button
-          className="add-btn first-add"
-          onClick={() => {
-            setSelectedProducts((currentProducts) => [
-              ...currentProducts,
-              {
-                imageTumbnail: img.thumbnail,
-                name,
-                category,
-                price,
-                quantity: 1,
-              },
-            ]);
-
-            setIsadded(true);
-          }}
-        >
-          <img src="images/icon-add-to-cart.svg" alt="" />
-          <span>Add to Cart</span>
-        </button>
-      )}
     </div>
   );
 }

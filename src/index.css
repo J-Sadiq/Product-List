@@ -80,19 +80,23 @@ main {
   color: var(--Red);
 }
 
+.pic-add-btn {
+  position: relative;
+}
+
 .add-btn {
   position: absolute;
   display: flex;
   align-items: center;
   border: 1px solid rgba(255, 0, 0, 0.2);
   border-radius: 20px;
-  padding: 4% 10%;
+  padding: 1rem 2rem;
   gap: 0.3rem;
   background-color: white;
   box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.1);
-  bottom: 7.2rem;
+  bottom: 0rem;
   text-align: center;
-  left: 18%;
+  left: 20%;
   transition: all ease 0.2s;
 }
 
